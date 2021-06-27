@@ -15,7 +15,7 @@ export default {
       value: (element) => new Date(element.getAttribute('content')).toISOString()
     },
     description: {
-      selector: 'meta[itemprop="description"]',
+      selector: 'meta[property="og:description"]',
       value: (element) => element.getAttribute('content')
     },
     embed_url: {
