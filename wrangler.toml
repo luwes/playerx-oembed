@@ -1,0 +1,6 @@
+name = "playerx-oembed"
+type = "webpack"
+account_id = ""
+workers_dev = true
+route = "api.playerx.io/oembed*"
+zone_id = ""
