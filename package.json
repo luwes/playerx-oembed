@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "name": "playerx-oembed",
+  "version": "1.0.0",
+  "description": "An enriched oEmbed API for the major media platforms.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "author": "Wesley Luyten <hi@wesleyluyten.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.29.0",
+    "prettier": "^2.3.1"
+  },
+  "dependencies": {
+    "iso8601-duration": "^1.3.0"
+  }
+}
