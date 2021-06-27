@@ -33,7 +33,8 @@ async function handleRequest(request) {
 
   return new Response(JSON.stringify(json), {
     headers: {
-      'content-type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     }
   });
 }
