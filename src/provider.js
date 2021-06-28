@@ -1,5 +1,15 @@
 export default {
 
+  name: null,
+  options: 'maxwidth maxheight',
+
+  buildUrl(req) {
+    let url = new URL(`https://${this.name.toLowerCase()}.com/oembed`);
+    url.searchParams.set('url', req.url);
+    url.searchParams.set('format', 'json');
+    return url;
+  },
+
   requestUrl(req) {
     let url = this.buildUrl(req);
     let params = req.searchParams;
