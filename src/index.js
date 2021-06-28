@@ -18,15 +18,13 @@ async function handleRequest(request) {
   }
 
   const composedProviders = Object.keys(providers)
-    .map(p => Object.assign({}, Provider, providers[p]));
+    .map(p => ({ ...Provider, ...providers[p] }));
 
   const provider = findProvider(composedProviders, req);
-  const url = provider.requestUrl(req);
-  const data = await (await fetch(url)).json();
+  const data = await (await fetch(provider.requestUrl(req))).json();
 
   if (provider.scrape) {
-    const contentUrl = url.searchParams.get('url');
-    Object.assign(data, await scraper(contentUrl, provider.scrape));
+    Object.assign(data, await scraper(req.url, provider.scrape));
   }
 
   const json = provider.finalize(req, data);
