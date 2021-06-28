@@ -2,8 +2,8 @@
 export default {
 
   patterns: [
-    /https?:\/\/(?:www\.)?facebook\.com\/.*videos\/(\d+)/,
-    /https?:\/\/(?:www\.)?facebook\.com\/video\.php\?(id|v)=(\d+)/,
+    /https?:\/\/(?:www\.|m\.)?facebook\.com\/.*videos\/(\d+)/,
+    /https?:\/\/(?:www\.|m\.)?facebook\.com\/video\.php\?(id|v)=(\d+)/,
   ],
 
   name: 'Facebook',
