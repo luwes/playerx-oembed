@@ -1,4 +1,3 @@
-/* globals HTMLRewriter */
 import * as providers from './providers/index.js';
 import Provider from './provider.js';
 
@@ -21,13 +20,9 @@ async function handleRequest(request) {
     .map(p => ({ ...Provider, ...providers[p] }));
 
   const provider = findProvider(composedProviders, req);
-  const data = await (await fetch(provider.requestUrl(req))).json();
-
-  if (provider.scrape) {
-    Object.assign(data, await scraper(req.url, provider.scrape));
-  }
-
-  const json = provider.finalize(req, data);
+  const url = provider.requestUrl(req);
+  const data = provider.oembed || await (await fetch(url)).json();
+  const json = await provider.finalize(req, data);
 
   return new Response(JSON.stringify(json), {
     headers: {
@@ -57,25 +52,4 @@ function createRequest(request) {
       return this.url.match(this.pattern) || [];
     }
   };
-}
-
-async function scraper(contentUrl, scrape) {
-  const oldResponse = await fetch(contentUrl);
-  const rewriter = new HTMLRewriter();
-  const data = {};
-
-  for (const prop in scrape) {
-    const { selector, value } = scrape[prop];
-    rewriter.on(selector, {
-      element(element) {
-        data[prop] = value(element);
-      }
-    })
-  }
-
-  await rewriter
-    .transform(oldResponse)
-    .arrayBuffer();
-
-  return data;
 }

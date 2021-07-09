@@ -1,3 +1,5 @@
+import { scraper } from './scraper.js';
+
 export default {
 
   name: null,
@@ -37,7 +39,11 @@ export default {
     return body;
   },
 
-  finalize(req, data) {
+  async finalize(req, data) {
+    if (this.scrape) {
+      Object.assign(data, await scraper(req.url, this.scrape));
+    }
+
     return {
       ...data,
       ...this.serialize(data)
