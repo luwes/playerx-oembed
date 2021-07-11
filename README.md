@@ -10,4 +10,5 @@ Supported providers so far (feel free to open a PR):
 - Wistia (https://api.playerx.io/oembed?url=https%3A%2F%2Fwesleyluyten.wistia.com%2Fmedias%2Fdgzftn5ctz)
 - Vidyard (https://api.playerx.io/oembed?url=https%3A%2F%2Fshare.vidyard.com%2Fwatch%2FTYY9iSji3mJuFqp2oj4FoL)
 - Streamable (https://api.playerx.io/oembed?url=https%3A%2F%2Fstreamable.com%2Faizxh)
-
+- Facebook (https://api.playerx.io/oembed?url=https%3A%2F%2Fwww.facebook.com%2Fwesleyluyten%2Fvideos%2F10220940465559072)
+- JW Player (https://api.playerx.io/oembed?url=https%3A%2F%2Fcdn.jwplayer.com%2Fplayers%2FFpw44kH6-IxzuqJ4M.html)
