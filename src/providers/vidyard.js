@@ -1,4 +1,6 @@
 // https://knowledge.vidyard.com/hc/en-us/articles/360010000393-Share-a-Vidyard-player-using-oEmbed
+import { getFileHeaders } from '../utils.js';
+
 export default {
 
   patterns: [
@@ -17,10 +19,6 @@ export default {
     duration: {
       selector: 'meta[property="video:duration"]',
       value: (element) => Number(element.getAttribute('content'))
-    },
-    upload_date: {
-      selector: 'meta[property="video:release_date"]',
-      value: (element) => new Date(element.getAttribute('content')).toISOString()
     },
     description: {
       selector: 'meta[name="description"]',
@@ -41,6 +39,15 @@ export default {
     url.searchParams.set('url', req.url);
     url.searchParams.set('format', 'json');
     return url;
+  },
+
+  async serialize(data) {
+    const thumbHeaders = await getFileHeaders(data.thumbnail_url);
+
+    return {
+      ...data,
+      upload_date: new Date(thumbHeaders['last-modified']).toISOString(),
+    };
   },
 
 };
