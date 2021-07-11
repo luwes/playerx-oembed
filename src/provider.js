@@ -6,7 +6,8 @@ export default {
   options: 'maxwidth maxheight',
 
   buildUrl(req) {
-    let url = new URL(`https://${this.name.toLowerCase()}.com/oembed`);
+    let providerName = this.name.toLowerCase().replace(/\s/g, '');
+    let url = new URL(`https://${providerName}.com/oembed`);
     url.searchParams.set('url', req.url);
     url.searchParams.set('format', 'json');
     return url;
@@ -43,11 +44,7 @@ export default {
     if (this.scrape) {
       Object.assign(data, await scraper(req.url, this.scrape));
     }
-
-    return {
-      ...data,
-      ...this.serialize(data)
-    };
+    return this.serialize(data);
   },
 
 }

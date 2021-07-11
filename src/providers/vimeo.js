@@ -16,15 +16,16 @@ export default {
     return url;
   },
 
-  serialize() {
-    const data = {
+  serialize(data) {
+    return {
+      ...data,
+      upload_date: new Date(data.upload_date).toISOString(),
       head: [
         { type: 'link', rel: 'preconnect', href: 'https://player.vimeo.com' },
         { type: 'link', rel: 'preconnect', href: 'https://i.vimeocdn.com' },
         { type: 'link', rel: 'preconnect', href: 'https://f.vimeocdn.com' },
       ]
     };
-    return data;
   }
 
 };
