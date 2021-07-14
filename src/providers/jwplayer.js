@@ -8,6 +8,8 @@ export default {
 
   name: 'JW Player',
 
+  options: '',
+
   oembed: {
     type: 'video',
     version: '1.0',
