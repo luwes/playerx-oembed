@@ -1,6 +1,5 @@
 /* global IFRAMELY_API_KEY */
 export default {
-
   patterns: [
     /https?:\/\/(?:www\.|m\.)?facebook\.com\/.*videos\/(\d+)/,
     /https?:\/\/(?:www\.|m\.)?facebook\.com\/video\.php\?(id|v)=(\d+)/,
@@ -12,15 +11,15 @@ export default {
 
   buildUrl(req) {
     // FB removed their public oEmbed API :/
-    let url = new URL('https://iframe.ly/api/iframely');
-    url.searchParams.set('url', req.url);
+    let url = new URL('https://iframe.ly/api/iframely')
+    url.searchParams.set('url', req.url)
     // This is a Iframely dev license limited to 1000 unique hits per month!
     url.searchParams.set('api_key', IFRAMELY_API_KEY)
-    return url;
+    return url
   },
 
   serialize({ meta, links: { player, thumbnail } }) {
-    const { title, description, author, author_url, duration, date } = meta;
+    const { title, description, author, author_url, duration, date } = meta
 
     return {
       type: 'video',
@@ -37,7 +36,6 @@ export default {
       thumbnail_width: thumbnail[0].media.width,
       thumbnail_height: thumbnail[0].media.height,
       html: player[0].html,
-    };
+    }
   },
-
-};
+}
