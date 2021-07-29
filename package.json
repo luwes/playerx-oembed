@@ -3,15 +3,19 @@
   "name": "playerx-oembed",
   "version": "1.0.0",
   "description": "An enriched oEmbed API for the major media platforms.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "esbuild --bundle --sourcemap --outdir=dist ./src/index.js",
+    "dev": "miniflare --watch --debug",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write '**/*.{js,css,json,md}'"
   },
   "author": "Wesley Luyten <hi@wesleyluyten.com>",
   "license": "MIT",
   "devDependencies": {
+    "esbuild": "^0.12.16",
     "eslint": "^7.29.0",
+    "miniflare": "^1.2.0",
     "prettier": "^2.3.1"
   },
   "dependencies": {

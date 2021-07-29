@@ -1,5 +1,3 @@
-import { scraper } from './scraper.js';
-
 export default {
 
   name: null,
@@ -37,9 +35,6 @@ export default {
   },
 
   async finalize(req, data) {
-    if (this.scrape) {
-      Object.assign(data, await scraper(req.url, this.scrape));
-    }
     return this.sortJson(await this.serialize(data));
   },
 

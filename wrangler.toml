@@ -1,6 +1,14 @@
 name = "playerx-oembed"
-type = "webpack"
+type = "javascript"
 account_id = ""
 workers_dev = true
+
+[env.production]
+workers_dev = false
 route = "api.playerx.io/oembed*"
 zone_id = ""
+
+[build]
+command = "npm run build"
+[build.upload]
+format = "service-worker"
