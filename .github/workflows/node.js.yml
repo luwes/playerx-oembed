@@ -21,6 +21,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_IFRAMELY_API_KEY: ${{ secrets.IFRAMELY_API_KEY }}
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
@@ -28,5 +33,3 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm test
-      env:
-        IFRAMELY_API_KEY: ${{ secrets.IFRAMELY_API_KEY }}
