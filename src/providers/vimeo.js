@@ -15,9 +15,11 @@ export default {
   },
 
   serialize(data) {
+    const date = new Date(data.upload_date)
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
     return {
       ...data,
-      upload_date: new Date(data.upload_date).toISOString(),
+      upload_date: date.toISOString(),
       head: [
         { type: 'link', rel: 'preconnect', href: 'https://player.vimeo.com' },
         { type: 'link', rel: 'preconnect', href: 'https://i.vimeocdn.com' },
