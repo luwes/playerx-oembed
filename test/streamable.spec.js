@@ -18,6 +18,14 @@ test('https://streamable.com/aizxh', async (t) => {
     height: 1080,
     embed_url: 'https://streamable.com/t/aizxh',
   })
-  t.true(json.thumbnail_url.startsWith('//cdn-cf-east.streamable.com/image/aizxh.jpg?Expires='))
-  t.true(json.content_url.startsWith('https://cdn-cf-east.streamable.com/video/mp4/aizxh.mp4?Expires='))
+  t.true(
+    json.thumbnail_url.startsWith(
+      '//cdn-cf-east.streamable.com/image/aizxh.jpg?Expires=',
+    ),
+  )
+  t.true(
+    json.content_url.startsWith(
+      'https://cdn-cf-east.streamable.com/video/mp4/aizxh.mp4?Expires=',
+    ),
+  )
 })
