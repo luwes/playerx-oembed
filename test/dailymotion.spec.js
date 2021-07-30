@@ -26,6 +26,6 @@ test('https://www.dailymotion.com/video/x7sgamf', async (t) => {
   })
   t.regex(
     json.thumbnail_url,
-    /https:\/\/s[123].dmcdn.net\/v\/S4x771WtjzSujYiXv\/x240/,
+    /https:\/\/s[123].dmcdn.net\/v\/S4x771W[^/]+\/x240/,
   )
 })
