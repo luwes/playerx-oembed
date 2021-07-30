@@ -1,3 +1,5 @@
+import { getFileHeaders } from '../utils.js'
+
 export default {
   patterns: [/https?:\/\/(?:www\.)?streamable\.com\/(\w+)$/],
 
@@ -9,14 +11,6 @@ export default {
     duration: {
       selector: 'script[data-duration]',
       value: (element) => Number(element.getAttribute('data-duration')),
-    },
-    upload_date: {
-      selector: 'meta[property="og:updated_time"]',
-      value: (element) => {
-        const date = new Date(element.getAttribute('content'))
-        date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
-        return date.toISOString()
-      },
     },
     embed_url: {
       selector: 'meta[name="twitter:player"]',
@@ -32,5 +26,18 @@ export default {
     let url = new URL('https://api.streamable.com/oembed.json')
     url.searchParams.set('url', req.url)
     return url
+  },
+
+  async serialize(data) {
+    if (data.thumbnail_url.startsWith('//')) {
+      data.thumbnail_url = `https:${data.thumbnail_url}`
+    }
+
+    const thumbHeaders = await getFileHeaders(data.thumbnail_url)
+
+    return {
+      ...data,
+      upload_date: new Date(thumbHeaders['last-modified']).toISOString(),
+    }
   },
 }
