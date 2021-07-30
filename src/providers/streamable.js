@@ -12,8 +12,11 @@ export default {
     },
     upload_date: {
       selector: 'meta[property="og:updated_time"]',
-      value: (element) =>
-        new Date(element.getAttribute('content')).toISOString(),
+      value: (element) => {
+        const date = new Date(element.getAttribute('content'))
+        date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
+        return date.toISOString()
+      },
     },
     embed_url: {
       selector: 'meta[name="twitter:player"]',
