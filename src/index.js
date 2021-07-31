@@ -93,7 +93,12 @@ async function handlePost(event, oEmbedUrl) {
   }
 
   const body = 'x-purge header is required'
-  return new Response(body, { status: 400 })
+  return new Response(body, {
+    status: 400,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  })
 }
 
 function MethodNotAllowed(request) {
@@ -101,6 +106,7 @@ function MethodNotAllowed(request) {
     status: 405,
     headers: {
       Allow: 'GET',
+      'Access-Control-Allow-Origin': '*',
     },
   })
 }
@@ -108,6 +114,9 @@ function MethodNotAllowed(request) {
 function NotFound() {
   return new Response(`Not Found`, {
     status: 404,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   })
 }
 
