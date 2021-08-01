@@ -33,3 +33,10 @@ Supported providers so far (feel free to open a PR):
 - Streamable (https://api.playerx.io/oembed?url=https%3A%2F%2Fstreamable.com%2Faizxh)
 - Facebook (https://api.playerx.io/oembed?url=https%3A%2F%2Fwww.facebook.com%2Fwesleyluyten%2Fvideos%2F10220940465559072)
 - JW Player (https://api.playerx.io/oembed?url=https%3A%2F%2Fcdn.jwplayer.com%2Fplayers%2FFpw44kH6-IxzuqJ4M.html)
+
+## Purge cached resource
+
+```bash
+curl -X POST "https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274789" \
+-H "X-Purge: 1"
+``` 
