@@ -39,4 +39,9 @@ Supported providers so far (feel free to open a PR):
 ```bash
 curl -X POST "https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274789" \
 -H "X-Purge: 1"
-``` 
+```
+
+## Thanks
+
+- [noembed](https://github.com/leedo/noembed/) for the initial code structure
+- [Cloudflare](https://www.cloudflare.com/) for the free tier
