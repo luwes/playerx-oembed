@@ -1,3 +1,4 @@
+/* global CF_ZONE, CF_TOKEN */
 import { createRequest } from './request.js'
 import * as providers from './providers/index.js'
 import Provider from './provider.js'
@@ -17,6 +18,7 @@ async function handleRequest(event) {
     return MethodNotAllowed(request)
   }
 
+  const url = new URL(request.url)
   const req = createRequest(request)
   if (!req.url) {
     const body = 'url parameter is required'
@@ -35,15 +37,17 @@ async function handleRequest(event) {
   const oEmbedUrl = provider.requestUrl(req)
   // e.g. https://vimeo.com/357274789
   const contentUrl = oEmbedUrl.searchParams.get('url')
+  // searchParams are sorted and matched for each provider
+  const cacheUrl = `${url.origin}${url.pathname}?${oEmbedUrl.searchParams}`;
 
   if (request.method === 'POST') {
-    return handlePost(event, String(oEmbedUrl), contentUrl)
+    return handlePost(event, cacheUrl, contentUrl)
   }
 
   const cache = caches.default
-  let response = await cache.match(String(oEmbedUrl))
+  let response = await cache.match(cacheUrl)
   if (response) {
-    console.warn(`cache hit for ${oEmbedUrl}`)
+    console.warn(`cache hit for ${cacheUrl}`)
     return response
   }
 
@@ -64,7 +68,7 @@ async function handleRequest(event) {
     },
   })
 
-  event.waitUntil(cache.put(String(oEmbedUrl), response.clone()))
+  event.waitUntil(cache.put(cacheUrl, response.clone()))
 
   return response
 }
@@ -78,11 +82,21 @@ async function handlePost(event, oEmbedUrl) {
   const request = event.request
 
   if (String(request.headers.get('x-purge')) === '1') {
-    const cache = caches.default
+
+    const url = `https://api.cloudflare.com/client/v4/zones/${CF_ZONE}/purge_cache`;
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${CF_TOKEN}`,
+      },
+      body: JSON.stringify({
+        files: [oEmbedUrl]
+      })
+    });
+
     return new Response(
-      JSON.stringify({
-        [oEmbedUrl]: await cache.delete(oEmbedUrl),
-      }),
+      JSON.stringify(await response.json()),
       {
         headers: {
           'Content-Type': 'application/json',
