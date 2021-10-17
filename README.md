@@ -1,4 +1,4 @@
-# Playerx oEmbed
+# 🙅‍♂️ oEmbed
 
 Uses the media platform's oEmbed API when possible and enriches the response with useful metadata / structured data from the content URL using [Cloudflare workers](https://developers.cloudflare.com/workers/).
 
