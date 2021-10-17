@@ -1,3 +1,5 @@
+import { secondsToISOString } from './utils.js';
+
 export default {
   name: null,
   options: 'maxwidth maxheight',
@@ -34,7 +36,39 @@ export default {
   },
 
   async finalize(req, data) {
-    return this.sortJson(await this.serialize(data))
+    data = this.sortJson(await this.serialize(data))
+
+    let params = req.searchParams
+    for (let key of ['seo']) {
+      if (params.get(key) == '1' || params.get(key) == 'true') {
+        data = this[key](data)
+      }
+    }
+
+    return data
+  },
+
+  seo(data) {
+    const json = {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: data.title,
+      description: data.description,
+      uploadDate: data.upload_date && new Date(data.upload_date).toISOString(),
+      duration: data.duration && secondsToISOString(data.duration),
+      embedUrl: ((data.html || '').match(/<iframe[^>]+src="([^"]+)/) || [])[1]
+    }
+
+    Object.keys(json).forEach((prop) => {
+      if (json[prop] == null) {
+        delete json[prop]
+      }
+    })
+
+    return {
+      ...data,
+      html: `${data.html}<script type="application/ld+json">${JSON.stringify(json)}</script>`
+    }
   },
 
   serialize(body) {

@@ -2,6 +2,14 @@
 
 Uses the media platform's oEmbed API when possible and enriches the response with useful metadata / structured data from the content URL using [Cloudflare workers](https://developers.cloudflare.com/workers/).
 
+## Quick Example
+
+A consumer makes the following HTTP request:
+
+- [`https://api.playerx.io/oembed?url=https%3A%2F%2Fwesleyluyten.wistia.com%2Fmedias%2Fdgzftn5ctz`](https://api.playerx.io/oembed?url=https%3A%2F%2Fwesleyluyten.wistia.com%2Fmedias%2Fdgzftn5ctz)
+
+The provider then responds with an oEmbed response:
+
 ```json
 {
     "version": "1.0",
@@ -23,12 +31,29 @@ Uses the media platform's oEmbed API when possible and enriches the response wit
 }
 ```
 
+## Consumer Request
+
+Requests sent to the API endpoint must be HTTP GET requests, with all arguments sent as query parameters. All arguments must be urlencoded (as per RFC 1738).
+
+The following query parameters are defined as part of the oEmbed spec:
+
+param       | description
+----------- | -----------
+url         | **Required.** The URL to retrieve embedding information for.
+maxwidth    | The maximum width of the embedded resource.
+maxheight   | The maximum height of the embedded resource.
+seo         | If seo is set to `1`, structured data in [JSON-LD](https://json-ld.org/) format is appended to the `html` property. The structured data adds [SEO (Search engine optimization)](https://en.wikipedia.org/wiki/Search_engine_optimization) to the media's embed code.
+
+These are the supported URL params in the Playerx oEmbed layer but many media platform's oEmbed API support additional URL params. For example Vimeo supports: `width`, `height`, `byline`, `title`, `portrait`, `color`, `autoplay`, `loop`, `player_id`, etc.
+
 ## Purge cached resource
 
 ```bash
 curl -X POST "https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274789" \
 -H "X-Purge: 1"
 ```
+
+## Supported Providers
 
 Supported providers so far (feel free to open a PR):
 
