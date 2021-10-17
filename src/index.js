@@ -38,7 +38,7 @@ async function handleRequest(event) {
   // e.g. https://vimeo.com/357274789
   const contentUrl = oEmbedUrl.searchParams.get('url')
   // searchParams are sorted and matched for each provider
-  const cacheUrl = `${url.origin}${url.pathname}?${oEmbedUrl.searchParams}`;
+  const cacheUrl = `${url.origin}${url.pathname}?${provider.cacheParams(req)}`;
 
   if (request.method === 'POST') {
     return handlePost(event, cacheUrl, contentUrl)

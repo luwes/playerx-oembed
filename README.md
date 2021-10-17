@@ -42,7 +42,8 @@ param       | description
 url         | **Required.** The URL to retrieve embedding information for.
 maxwidth    | The maximum width of the embedded resource.
 maxheight   | The maximum height of the embedded resource.
-seo         | If seo is set to `1`, structured data in [JSON-LD](https://json-ld.org/) format is appended to the `html` property. The structured data adds [SEO (Search engine optimization)](https://en.wikipedia.org/wiki/Search_engine_optimization) to the media's embed code.
+seo         | If [`seo=1`](https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274789&seo=1), structured data in [JSON-LD](https://json-ld.org/) format is appended to the `html` property. The structured data adds [SEO (Search engine optimization)](https://en.wikipedia.org/wiki/Search_engine_optimization) to the media's embed code.
+fields      | Filter the response properties based on the `fields` param. Comma separated. For example [`fields=title,thumbnail_url,html`](https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274789&fields=title,thumbnail_url,html)
 
 These are the supported URL params in the Playerx oEmbed layer but many media platform's oEmbed API support additional URL params. For example Vimeo supports: `width`, `height`, `byline`, `title`, `portrait`, `color`, `autoplay`, `loop`, `player_id`, etc.
 

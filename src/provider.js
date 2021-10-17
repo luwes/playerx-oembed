@@ -1,5 +1,7 @@
 import { secondsToISOString } from './utils.js';
 
+const providerOptions = 'seo fields'
+
 export default {
   name: null,
   options: 'maxwidth maxheight',
@@ -25,6 +27,20 @@ export default {
     return url
   },
 
+  cacheParams(req) {
+    let params = req.searchParams
+    let cacheParams = new URLSearchParams()
+    let allOptions = providerOptions + ' ' + this.options
+
+    ;(allOptions.match(/\S+/g) || []).forEach((option) => {
+      if (params.has(option)) {
+        cacheParams.set(option, params.get(option))
+      }
+    })
+
+    return cacheParams
+  },
+
   matches(req) {
     return this.patterns.some((pattern) => {
       if (pattern.test(req.url)) {
@@ -36,19 +52,21 @@ export default {
   },
 
   async finalize(req, data) {
-    data = this.sortJson(await this.serialize(data))
+    data = await this.serialize(data)
 
     let params = req.searchParams
-    for (let key of ['seo']) {
-      if (params.get(key) == '1' || params.get(key) == 'true') {
-        data = this[key](data)
+    for (let key of providerOptions.match(/\S+/g)) {
+      if (params.get(key) && typeof this[key] === 'function') {
+        data = this[key](params.get(key), data)
       }
     }
 
-    return data
+    return this.sortJson(data)
   },
 
-  seo(data) {
+  seo(param, data) {
+    if (param != '1') return data;
+
     const json = {
       '@context': 'https://schema.org',
       '@type': 'VideoObject',
@@ -69,6 +87,16 @@ export default {
       ...data,
       html: `${data.html}<script type="application/ld+json">${JSON.stringify(json)}</script>`
     }
+  },
+
+  fields(param, data) {
+    const fields = param.split(',')
+    return fields.reduce((acc, field) => {
+      if (field in data) {
+        acc[field] = data[field]
+      }
+      return acc
+    }, {})
   },
 
   serialize(body) {
