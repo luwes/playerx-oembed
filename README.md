@@ -67,6 +67,11 @@ Supported providers so far (feel free to open a PR):
 - Facebook (https://api.playerx.io/oembed?url=https%3A%2F%2Fwww.facebook.com%2Fwesleyluyten%2Fvideos%2F10220940465559072)
 - JW Player (https://api.playerx.io/oembed?url=https%3A%2F%2Fcdn.jwplayer.com%2Fplayers%2FFpw44kH6-IxzuqJ4M.html)
 
+## Used by
+
+- [`<plx-schema>`](https://dev.playerx.io/docs/schema/) Add SEO to your media embeds
+- [`<plx-preview>`](https://dev.playerx.io/docs/preview/) Load lightweight previews before your media players
+
 ## Thanks
 
 - [Cloudflare](https://www.cloudflare.com/) for the generous free tier
