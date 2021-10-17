@@ -1,6 +1,6 @@
 # Playerx oEmbed
 
-Uses the media platform's oEmbed API when possible and enriches the response with some useful metadata / structured data from the content URL using [Cloudflare workers](https://developers.cloudflare.com/workers/).
+Uses the media platform's oEmbed API when possible and enriches the response with useful metadata / structured data from the content URL using [Cloudflare workers](https://developers.cloudflare.com/workers/).
 
 ```json
 {
@@ -23,6 +23,13 @@ Uses the media platform's oEmbed API when possible and enriches the response wit
 }
 ```
 
+## Purge cached resource
+
+```bash
+curl -X POST "https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274789" \
+-H "X-Purge: 1"
+```
+
 Supported providers so far (feel free to open a PR):
 
 - Vimeo (https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274789)
@@ -34,14 +41,7 @@ Supported providers so far (feel free to open a PR):
 - Facebook (https://api.playerx.io/oembed?url=https%3A%2F%2Fwww.facebook.com%2Fwesleyluyten%2Fvideos%2F10220940465559072)
 - JW Player (https://api.playerx.io/oembed?url=https%3A%2F%2Fcdn.jwplayer.com%2Fplayers%2FFpw44kH6-IxzuqJ4M.html)
 
-## Purge cached resource
-
-```bash
-curl -X POST "https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274789" \
--H "X-Purge: 1"
-```
-
 ## Thanks
 
+- [Cloudflare](https://www.cloudflare.com/) for the generous free tier
 - [noembed](https://github.com/leedo/noembed/) for the initial code structure
-- [Cloudflare](https://www.cloudflare.com/) for the free tier
