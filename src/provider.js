@@ -30,7 +30,7 @@ export default {
   cacheParams(req) {
     let params = req.searchParams
     let cacheParams = new URLSearchParams()
-    let allOptions = providerOptions + ' ' + this.options
+    let allOptions = `url ${providerOptions} ${this.options}`
 
     ;(allOptions.match(/\S+/g) || []).forEach((option) => {
       if (params.has(option)) {
