@@ -15,9 +15,8 @@ test('https://www.dailymotion.com/video/x7sgamf', async (t) => {
       'Was dreaming about butterflies during the week got this in the weekend in Philadelphia on a random city trip!',
     duration: 46,
     upload_date: '2020-03-03T14:02:39.000Z',
-    author_name: 'dm_0eeae849d4ba20501b1b471a63e76064',
-    author_url:
-      'https://www.dailymotion.com/dm_0eeae849d4ba20501b1b471a63e76064',
+    author_name: 'Playerx',
+    author_url: 'https://www.dailymotion.com/playerxo',
     thumbnail_width: 427,
     thumbnail_height: 240,
     html: '<iframe frameborder="0" width="480" height="269" src="https://www.dailymotion.com/embed/video/x7sgamf" allowfullscreen allow="autoplay"></iframe>',
@@ -26,6 +25,6 @@ test('https://www.dailymotion.com/video/x7sgamf', async (t) => {
   })
   t.regex(
     json.thumbnail_url,
-    /https:\/\/s[123].dmcdn.net\/v\/S4x771W[^/]+\/x240/,
+    /https:\/\/s[123].dmcdn.net\/v\/S4x771[^/]+\/x240/,
   )
 })

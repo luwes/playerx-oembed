@@ -13,16 +13,16 @@ test('https://www.facebook.com/wesleyluyten/videos/10220940465559072', async (t)
     title: 'Wesley Luyten',
     description:
       'Was dreaming about butterflies during the week got this in the weekend in Philadelphia on a random city trip!',
-    duration: 47,
-    upload_date: '2020-02-29T20:53:18.000Z',
+    duration: undefined,
+    upload_date: undefined,
     author_name: 'Wesley Luyten',
     author_url: 'https://www.facebook.com/wesleyluyten',
-    thumbnail_width: 3840,
-    thumbnail_height: 2160,
+    thumbnail_width: 366,
+    thumbnail_height: 206,
   })
   t.regex(
     json.thumbnail_url,
-    /^https:\/\/scontent-iad3-2.xx.fbcdn.net\/v\/t15.5256-10\/83910444_10220940485319566_2924292779142021120_n.jpg/
+    /^https:\/\/scontent-iad3-2.xx.fbcdn.net\/v\/t15.5256-10\/(.*?\/)?83910444_10220940485319566_2924292779142021120_n.jpg/
   )
   t.regex(
     json.html,

@@ -23,7 +23,7 @@ test('https://vimeo.com/357274789', async (t) => {
     width: 426,
     height: 240,
     is_plus: '0',
-    account_type: 'live_business',
+    account_type: 'basic',
     thumbnail_url_with_play_button:
       'https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F810965406-a3ff82ba6dcf55973dcc42f561664c4275594fb2505f849e27da7672795a288d-d_295x166&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png',
     video_id: 357274789,
