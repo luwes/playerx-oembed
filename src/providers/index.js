@@ -1,3 +1,4 @@
+export { default as apivideo } from './apivideo.js'
 export { default as vimeo } from './vimeo.js'
 export { default as youtube } from './youtube.js'
 export { default as wistia } from './wistia.js'
