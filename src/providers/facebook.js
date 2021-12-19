@@ -18,7 +18,7 @@ export default {
     return url
   },
 
-  serialize({ meta, links: { player, thumbnail } }) {
+  serialize({ meta, links: { player, thumbnail } }, req) {
     const { title, description, author, author_url, duration, date } = meta
 
     return {
@@ -36,6 +36,7 @@ export default {
       thumbnail_width: thumbnail[0].media.width,
       thumbnail_height: thumbnail[0].media.height,
       html: player[0].html,
+      embed_url: `https://www.facebook.com/v3.2/plugins/video.php?allowfullscreen=true&href=${encodeURIComponent(req.url)}`
     }
   },
 }
