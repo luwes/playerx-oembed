@@ -57,6 +57,8 @@ curl -X POST "https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274
 
 Supported providers so far (feel free to open a PR):
 
+- MUX video ([https://api.playerx.io/oembed?url=https%3A%2F%2Fstream.mux.com%2Fr4rOE02cc95tbe3I00302nlrHfT023...9w018KxZA.m3u8](https://api.playerx.io/oembed?url=https%3A%2F%2Fstream.mux.com%2Fr4rOE02cc95tbe3I00302nlrHfT023Q3IedFJW029w018KxZA.m3u8))
+- api.video (https://api.playerx.io/oembed?url=https%3A%2F%2Fembed.api.video%2Fvod%2Fvi7pA8Iz9m3S466XPu8qUJr)
 - Vimeo (https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274789)
 - YouTube (https://api.playerx.io/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBK1JIjLPwaA)
 - Dailymotion (https://api.playerx.io/oembed?url=https%3A%2F%2Fwww.dailymotion.com%2Fvideo%2Fx7sgamf)
