@@ -61,6 +61,13 @@ export default {
       }
     }
 
+    if (!data.embed_url) {
+      const embedUrlMatches = data.html.match(/<iframe[^>]+src="([^"]+)/i)
+      if (embedUrlMatches && embedUrlMatches[1]) {
+        data.embed_url = embedUrlMatches[1];
+      }
+    }
+
     return this.sortJson(data)
   },
 
