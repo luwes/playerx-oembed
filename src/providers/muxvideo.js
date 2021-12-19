@@ -34,7 +34,7 @@ export default {
       width: img.width,
       height: img.height,
       html: `<script src="https://cdn.jsdelivr.net/npm/@mux-elements/mux-video@0.2.0/dist/index.js"></script>
-<mux-video src="${req.url}"</mux-video>`,
+<mux-video src="${req.url}" controls></mux-video>`,
     }
   },
 }
