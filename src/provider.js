@@ -52,7 +52,7 @@ export default {
   },
 
   async finalize(req, data) {
-    data = await this.serialize(data)
+    data = await this.serialize(data, req)
 
     let params = req.searchParams
     for (let key of providerOptions.match(/\S+/g)) {

@@ -27,7 +27,6 @@ export default {
   buildUrl(req) {
     let url = new URL('https://oembed.api.video/')
     let id = req.captures[1]
-    console.log(id);
     url.searchParams.set('url', `https://embed.api.video/vod/${id}`)
     return url
   },
