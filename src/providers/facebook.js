@@ -18,7 +18,8 @@ export default {
     return url
   },
 
-  serialize({ meta, links: { player, thumbnail } }, req) {
+  serialize(data, req) {
+    const { meta, links: { player, thumbnail } } = data
     const { title, description, author, author_url, duration, date } = meta
 
     return {
@@ -32,9 +33,9 @@ export default {
       author_url,
       duration,
       upload_date: date,
-      thumbnail_url: thumbnail[0].href,
-      thumbnail_width: thumbnail[0].media.width,
-      thumbnail_height: thumbnail[0].media.height,
+      thumbnail_url: thumbnail && thumbnail[0].href,
+      thumbnail_width: thumbnail && thumbnail[0].media.width,
+      thumbnail_height: thumbnail && thumbnail[0].media.height,
       html: player[0].html,
       embed_url: `https://www.facebook.com/v3.2/plugins/video.php?allowfullscreen=true&href=${encodeURIComponent(req.url)}`
     }
