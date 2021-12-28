@@ -3,6 +3,7 @@ import { createRequest } from './request.js'
 import * as providers from './providers/index.js'
 import Provider from './provider.js'
 import { scrapeHTML } from './scrape.js'
+import { render } from './render.js'
 
 addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event))
@@ -48,27 +49,38 @@ async function handleRequest(event) {
   let response = await cache.match(cacheUrl)
   if (response) {
     console.warn(`cache hit for ${cacheUrl}`)
-    return response
+  } else {
+    let data = provider.oembed || (await (await fetch(oEmbedUrl)).json())
+
+    if (provider.scrape) {
+      const html = await fetch(contentUrl)
+      data = { ...data, ...(await scrapeHTML(html, provider.scrape)) }
+    }
+
+    const json = await provider.finalize(req, data)
+
+    response = new Response(JSON.stringify(json), {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': `s-maxage=${60 * 60 * 24 * 100}`,
+      },
+    })
+
+    event.waitUntil(cache.put(cacheUrl, response.clone()))
   }
 
-  let data = provider.oembed || (await (await fetch(oEmbedUrl)).json())
-
-  if (provider.scrape) {
-    const html = await fetch(contentUrl)
-    data = { ...data, ...(await scrapeHTML(html, provider.scrape)) }
+  if (url.pathname === '/html') {
+    return new Response((await response.clone().json()).html, {
+      headers: {
+        "content-type": "text/html;charset=UTF-8",
+      },
+    })
   }
 
-  const json = await provider.finalize(req, data)
-
-  response = new Response(JSON.stringify(json), {
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Cache-Control': `s-maxage=${60 * 60 * 24 * 100}`,
-    },
-  })
-
-  event.waitUntil(cache.put(cacheUrl, response.clone()))
+  if (url.pathname === '/render') {
+    return render(event, await response.clone().json())
+  }
 
   return response
 }

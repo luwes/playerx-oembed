@@ -1,7 +1,7 @@
-import { muxvideo, getHtml } from 'playerx/dist/config.js'
+import { cloudinary, getHtml } from 'playerx/dist/config.js'
 import { jpegDimensions } from '../utils.js'
 
-const { name, url, srcPattern } = muxvideo
+const { name, url, srcPattern } = cloudinary
 
 export default {
   patterns: [new RegExp(srcPattern)],
@@ -18,7 +18,7 @@ export default {
   },
 
   async serialize(data, req) {
-    const thumbnail_url = `https://image.mux.com/${req.captures[1]}/thumbnail.jpg`
+    const thumbnail_url = `https://res.cloudinary.com/${req.captures[1]}/video/upload/c_limit,h_400,w_800/${req.captures[3]}.jpg`
     const rect = await jpegDimensions(thumbnail_url)
 
     return {
@@ -29,9 +29,8 @@ export default {
       width: rect.width,
       height: rect.height,
       html: getHtml({
-        ...muxvideo,
+        ...cloudinary,
         src: req.url,
-        poster: thumbnail_url,
         ...Object.fromEntries(req.searchParams),
       }),
     }

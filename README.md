@@ -57,16 +57,19 @@ curl -X POST "https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274
 
 Supported providers so far (feel free to open a PR):
 
-- MUX video ([https://api.playerx.io/oembed?url=https%3A%2F%2Fstream.mux.com%2Fr4rOE02cc95tbe3I00302nlrHfT023...9w018KxZA.m3u8](https://api.playerx.io/oembed?url=https%3A%2F%2Fstream.mux.com%2Fr4rOE02cc95tbe3I00302nlrHfT023Q3IedFJW029w018KxZA.m3u8))
-- api.video (https://api.playerx.io/oembed?url=https%3A%2F%2Fembed.api.video%2Fvod%2Fvi7pA8Iz9m3S466XPu8qUJr)
-- Vimeo (https://api.playerx.io/oembed?url=https%3A%2F%2Fvimeo.com%2F357274789)
-- YouTube (https://api.playerx.io/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBK1JIjLPwaA)
-- Dailymotion (https://api.playerx.io/oembed?url=https%3A%2F%2Fwww.dailymotion.com%2Fvideo%2Fx7sgamf)
-- Wistia (https://api.playerx.io/oembed?url=https%3A%2F%2Fwesleyluyten.wistia.com%2Fmedias%2Foifkgmxnkb)
-- Vidyard (https://api.playerx.io/oembed?url=https%3A%2F%2Fshare.vidyard.com%2Fwatch%2FTYY9iSji3mJuFqp2oj4FoL)
-- Streamable (https://api.playerx.io/oembed?url=https%3A%2F%2Fstreamable.com%2Faizxh)
-- Facebook (https://api.playerx.io/oembed?url=https%3A%2F%2Fwww.facebook.com%2Fwesleyluyten%2Fvideos%2F10220940465559072)
-- JW Player (https://api.playerx.io/oembed?url=https%3A%2F%2Fcdn.jwplayer.com%2Fplayers%2FFpw44kH6-IxzuqJ4M.html)
+- api.video [/oembed?url=embed.api.video/vod/vi7pA8Iz9m3S466XPu8qUJr](https://api.playerx.io/oembed?url=https%3A%2F%2Fembed.api.video%2Fvod%2Fvi7pA8Iz9m3S466XPu8qUJr)
+- Brightcove [/oembed?url=players.brightcove.net/1752604059001/default_default/index.html?videoId=4883184247001](https://api.playerx.io/oembed?url=https%3A%2F%2Fplayers.brightcove.net%2F1752604059001%2Fdefault_default%2Findex.html%3FvideoId%3D4883184247001)
+- Cloudflare [/oembed?url=watch.videodelivery.net/57dbd37a90f3259b33ab5fe6f4c88e38](https://api.playerx.io/oembed?url=https%3A%2F%2Fwatch.videodelivery.net%2F57dbd37a90f3259b33ab5fe6f4c88e38)
+- Cloudinary [/oembed?url=res.cloudinary.com/dkbu77yte/video/upload/sp_4k/v1640704833/the_world_in_4k_hdr.m3u8](https://api.playerx.io/oembed?url=https%3A%2F%2Fres.cloudinary.com%2Fdkbu77yte%2Fvideo%2Fupload%2Fsp_4k%2Fv1640704833%2Fthe_world_in_4k_hdr.m3u8)
+- Dailymotion [/oembed?url=www.dailymotion.com/video/x85qs0t](https://api.playerx.io/oembed?url=https://www.dailymotion.com/video/x85qs0t)
+- Facebook [/oembed?url=www.facebook.com/wesleyluyten/videos/780960923305550](https://api.playerx.io/oembed?url=https://www.facebook.com/wesleyluyten/videos/780960923305550)
+- JW Player [/oembed?url=cdn.jwplayer.com/players/V073end4-Pd4r8gwe.html](https://api.playerx.io/oembed?url=https://cdn.jwplayer.com/players/V073end4-Pd4r8gwe.html)
+- MUX video [/oembed?url=stream.mux.com/r4rOE02cc95tbe3I00302nlrHfT023Q3IedFJW029w018KxZA.m3u8](https://api.playerx.io/oembed?url=https%3A%2F%2Fstream.mux.com%2Fr4rOE02cc95tbe3I00302nlrHfT023Q3IedFJW029w018KxZA.m3u8)
+- Streamable [/oembed?url=streamable.com/pz0lmz](https://api.playerx.io/oembed?url=https://streamable.com/pz0lmz)
+- Vidyard [/oembed?url=share.vidyard.com/watch/SpdS7bytPcF1Ztc8d7NxHC?](https://api.playerx.io/oembed?url=https://share.vidyard.com/watch/SpdS7bytPcF1Ztc8d7NxHC?)
+- Vimeo [/oembed?url=vimeo.com/648359100](https://api.playerx.io/oembed?url=https://vimeo.com/648359100)
+- Wistia [/oembed?url=wesleyluyten.wistia.com/medias/oifkgmxnkb](https://api.playerx.io/oembed?url=https%3A%2F%2Fwesleyluyten.wistia.com%2Fmedias%2Foifkgmxnkb)
+- YouTube [/oembed?url=www.youtube.com/watch?v=uxsOYVWclA0](https://api.playerx.io/oembed?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DuxsOYVWclA0)
 
 ## Used by
 

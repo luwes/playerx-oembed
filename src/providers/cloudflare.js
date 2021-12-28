@@ -1,7 +1,7 @@
-import { muxvideo, getHtml } from 'playerx/dist/config.js'
+import { cloudflare, getHtml } from 'playerx/dist/config.js'
 import { jpegDimensions } from '../utils.js'
 
-const { name, url, srcPattern } = muxvideo
+const { name, url, srcPattern } = cloudflare
 
 export default {
   patterns: [new RegExp(srcPattern)],
@@ -18,7 +18,7 @@ export default {
   },
 
   async serialize(data, req) {
-    const thumbnail_url = `https://image.mux.com/${req.captures[1]}/thumbnail.jpg`
+    const thumbnail_url = `https://videodelivery.net/${req.captures[1]}/thumbnails/thumbnail.jpg`
     const rect = await jpegDimensions(thumbnail_url)
 
     return {
@@ -29,9 +29,8 @@ export default {
       width: rect.width,
       height: rect.height,
       html: getHtml({
-        ...muxvideo,
+        ...cloudflare,
         src: req.url,
-        poster: thumbnail_url,
         ...Object.fromEntries(req.searchParams),
       }),
     }
