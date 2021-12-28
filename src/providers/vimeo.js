@@ -20,11 +20,6 @@ export default {
     return {
       ...data,
       upload_date: date.toISOString(),
-      head: [
-        { type: 'link', rel: 'preconnect', href: 'https://player.vimeo.com' },
-        { type: 'link', rel: 'preconnect', href: 'https://i.vimeocdn.com' },
-        { type: 'link', rel: 'preconnect', href: 'https://f.vimeocdn.com' },
-      ],
     }
   },
 }

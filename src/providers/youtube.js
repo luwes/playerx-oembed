@@ -36,14 +36,6 @@ export default {
   serialize(data) {
     return {
       ...data,
-      head: [
-        {
-          type: 'link',
-          rel: 'preconnect',
-          href: 'https://www.youtube-nocookie.com',
-        },
-        { type: 'link', rel: 'preconnect', href: 'https://s.ytimg.com' },
-      ],
     }
   },
 }
