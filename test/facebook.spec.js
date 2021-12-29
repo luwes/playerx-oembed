@@ -19,13 +19,10 @@ test('https://www.facebook.com/wesleyluyten/videos/10220940465559072', async (t)
     author_url: 'https://www.facebook.com/wesleyluyten',
     thumbnail_width: 366,
     thumbnail_height: 206,
+    html: '<iframe id="plx555" src="https://www.facebook.com/v3.2/plugins/video.php?href=https://www.facebook.com/wesleyluyten/videos/10220940465559072&allowfullscreen=true&" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>'
   })
   t.regex(
     json.thumbnail_url,
     /^https:\/\/scontent-iad3-\d.xx.fbcdn.net\/v\/t15.5256-10\/(.*?\/)?83910444_10220940485319566_2924292779142021120_n.jpg/
-  )
-  t.regex(
-    json.html,
-    new RegExp('<div id="fb-root"></div>\\n<script async="1" defer="1" crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v12.0" nonce="\\w+"></script><div class="fb-video" data-href="https://www.facebook.com/wesleyluyten/videos/10220940465559072"><blockquote cite="https://www.facebook.com/wesleyluyten/videos/10220940465559072/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/wesleyluyten/videos/10220940465559072/"></a><p>Was dreaming about butterflies during the week got this in the weekend in Philadelphia on a random city trip!</p>Posted by <a href="https://www.facebook.com/wesleyluyten">Wesley Luyten</a> on Saturday, February 29, 2020</blockquote></div>')
   )
 })

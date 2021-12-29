@@ -1,13 +1,14 @@
 /* global IFRAMELY_API_KEY */
+import { facebook as config, getHtml } from 'playerx/dist/config.js'
+
+const { name, srcPattern } = config
+
 export default {
-  patterns: [
-    /https?:\/\/(?:www\.|m\.)?facebook\.com\/.*videos\/(\d+)/,
-    /https?:\/\/(?:www\.|m\.)?facebook\.com\/video\.php\?(id|v)=(\d+)/,
-  ],
+  patterns: [new RegExp(srcPattern)],
 
-  name: 'Facebook',
+  name,
 
-  options: 'api_key',
+  options: 'api_key autoplay allowfullscreen lazy show-text show-captions',
 
   buildUrl(req) {
     // FB removed their public oEmbed API :/
@@ -19,7 +20,7 @@ export default {
   },
 
   serialize(data, req) {
-    const { meta, links: { player, thumbnail } } = data
+    const { meta, links: { thumbnail } } = data
     const { title, description, author, author_url, duration, date } = meta
 
     return {
@@ -36,8 +37,12 @@ export default {
       thumbnail_url: thumbnail && thumbnail[0].href,
       thumbnail_width: thumbnail && thumbnail[0].media.width,
       thumbnail_height: thumbnail && thumbnail[0].media.height,
-      html: player[0].html,
-      embed_url: `https://www.facebook.com/v3.2/plugins/video.php?allowfullscreen=true&href=${encodeURIComponent(req.url)}`
+      html: getHtml({
+        ...config,
+        src: req.url,
+        params: this.filterParams(this.options, req.searchParams).toString(),
+        ...Object.fromEntries(req.searchParams),
+      }),
     }
   },
 }
