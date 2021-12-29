@@ -1,9 +1,21 @@
+// https://wistia.com/support/developers/embed-options#options
+import { wistia as config, getHtml } from 'playerx/dist/config.js'
+
+const { name, srcPattern } = config
+
 export default {
-  patterns: [/https?:\/\/[^.]+\.(wistia\.com|wi\.st)\/.*/],
+  patterns: [new RegExp(srcPattern)],
 
-  name: 'Wistia',
+  name,
 
-  options: 'embedType handle popoverHeight popoverWidth',
+  options:
+    'autoPlay controlsVisibleOnLoad copyLinkAndThumbnailEnabled doNotTrack\
+    email endVideoBehavior fakeFullscreen fitStrategy fullscreenButton\
+    fullscreenOnRotateToLandscape googleAnalytics muted playbackRateControl\
+    playbar playButton playerColor playlistLinks playlistLoop playsinline\
+    playPauseNotifier playSuspendedOffScreen plugin preload qualityControl\
+    qualityMax qualityMin resumable seo settingsControl silentAutoPlay\
+    smallPlayButton stillUrl time thumbnailAltText videoFoam volume volumeControl',
 
   scrape: {
     upload_date: {
@@ -25,5 +37,21 @@ export default {
     let url = new URL('http://fast.wistia.com/oembed')
     url.searchParams.set('url', req.url)
     return url
+  },
+
+  serialize(data, req) {
+    return {
+      ...data,
+      embed_url: undefined, // inline embed is preferred
+      html: getHtml({
+        ...config,
+        src: req.url,
+        options: JSON.stringify(
+          Object.fromEntries(this.filterParams(this.options, req.searchParams)),
+        ),
+        params: this.filterParams(this.options, req.searchParams).toString(),
+        ...Object.fromEntries(req.searchParams),
+      }),
+    }
   },
 }
