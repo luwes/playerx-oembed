@@ -13,10 +13,10 @@ test('https://streamable.com/aizxh', async (t) => {
     title: 'Travis Scott - Made in America',
     duration: 46.066667,
     upload_date: '2020-02-28T14:29:04.000Z',
-    html: '<iframe class="streamable-embed" src="https://streamable.com/o/aizxh" frameborder="0" scrolling="no" width="1920" height="1080" allowfullscreen></iframe>',
+    html: '<iframe id="plx657" src="https://streamable.com/o/aizxh?" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>',
     width: 1920,
     height: 1080,
-    embed_url: 'https://streamable.com/t/aizxh',
+    embed_url: 'https://streamable.com/o/aizxh?',
   })
   t.regex(
     json.thumbnail_url,

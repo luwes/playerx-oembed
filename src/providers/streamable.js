@@ -1,11 +1,14 @@
+import { streamable as config, getHtml } from 'playerx/dist/config.js'
 import { getFileHeaders } from '../utils.js'
 
+const { name, srcPattern } = config
+
 export default {
-  patterns: [/https?:\/\/(?:www\.)?streamable\.com\/(\w+)$/],
+  patterns: [new RegExp(srcPattern)],
 
-  name: 'Streamable',
+  name,
 
-  options: '',
+  options: 'class id autoplay muted loop nocontrols hd',
 
   scrape: {
     duration: {
@@ -28,7 +31,7 @@ export default {
     return url
   },
 
-  async serialize(data) {
+  async serialize(data, req) {
     if (data.thumbnail_url.startsWith('//')) {
       data.thumbnail_url = `https:${data.thumbnail_url}`
     }
@@ -37,7 +40,14 @@ export default {
 
     return {
       ...data,
+      embed_url: null, // retrieve it from the html property, not from oembed.
       upload_date: new Date(thumbHeaders['last-modified']).toISOString(),
+      html: getHtml({
+        ...config,
+        src: req.url,
+        params: this.filterParams(this.options, req.searchParams).toString(),
+        ...Object.fromEntries(req.searchParams),
+      }),
     }
   },
 }
