@@ -18,16 +18,9 @@ test('https://www.youtube.com/watch?v=BK1JIjLPwaA', async (t) => {
     thumbnail_url: 'https://i.ytimg.com/vi/BK1JIjLPwaA/hqdefault.jpg',
     thumbnail_width: 480,
     thumbnail_height: 360,
-    html: '<iframe width="200" height="113" src="https://www.youtube.com/embed/BK1JIjLPwaA?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+    html: '<iframe id="plx145" src="https://www.youtube.com/embed/BK1JIjLPwaA?" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>',
     width: 200,
     height: 113,
-    head: [
-      {
-        type: 'link',
-        rel: 'preconnect',
-        href: 'https://www.youtube-nocookie.com',
-      },
-      { type: 'link', rel: 'preconnect', href: 'https://s.ytimg.com' },
-    ],
+    embed_url: 'https://www.youtube.com/embed/BK1JIjLPwaA?',
   })
 })

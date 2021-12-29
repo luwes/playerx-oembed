@@ -22,7 +22,7 @@ test('https://www.facebook.com/wesleyluyten/videos/10220940465559072', async (t)
   })
   t.regex(
     json.thumbnail_url,
-    /^https:\/\/scontent-iad3-2.xx.fbcdn.net\/v\/t15.5256-10\/(.*?\/)?83910444_10220940485319566_2924292779142021120_n.jpg/
+    /^https:\/\/scontent-iad3-\d.xx.fbcdn.net\/v\/t15.5256-10\/(.*?\/)?83910444_10220940485319566_2924292779142021120_n.jpg/
   )
   t.regex(
     json.html,
