@@ -1,13 +1,14 @@
+import { apivideo as config, getHtml } from 'playerx/dist/config.js'
 import { getFileHeaders } from '../utils.js'
 
+const { name, srcPattern } = config
+
 export default {
-  patterns: [
-    /api\.video\/(?:videos|vod)\/(\w+)/,
-  ],
+  patterns: [new RegExp(srcPattern)],
 
-  name: 'api.video',
+  name,
 
-  options: '',
+  options: 'autoplay loop t api hide-title hide-controls show-subtitles dl',
 
   scrape: {
     description: {
@@ -31,12 +32,36 @@ export default {
     return url
   },
 
-  async serialize(data) {
+  async serialize(data, req) {
     const thumbHeaders = await getFileHeaders(data.thumbnail_url)
 
     return {
       ...data,
+      embed_url: null, // retrieve it from the html property, not from oembed.api.video
       upload_date: new Date(thumbHeaders['last-modified']).toISOString(),
+      html: getHtml({
+        ...config,
+        src: req.url,
+        params: serializeParams(
+          Object.fromEntries(this.filterParams(this.options, req.searchParams)),
+        ),
+        ...Object.fromEntries(req.searchParams),
+      }),
     }
   },
+}
+
+/**
+ * @see https://docs.api.video/docs/video-playback-features
+ * @param  {Object} props
+ * @return {string} e.g. autoplay;loop
+ */
+function serializeParams(props) {
+  return Object.keys(props)
+    .map((key) => {
+      if ([true, '1', 'true'].includes(props[key])) return key
+      if ([false, '0', 'false'].includes(props[key])) return ''
+      return `${key}=${props[key]}`
+    })
+    .join(';')
 }
