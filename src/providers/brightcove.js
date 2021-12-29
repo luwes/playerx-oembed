@@ -8,7 +8,7 @@ export default {
 
   name,
 
-  options: 'class id poster autoplay muted controls',
+  options: 'class id autoplay muted controls loop preload playsinline',
 
   oembed: {
     type: 'video',
@@ -30,11 +30,11 @@ export default {
         },
       }
       const json = await (await fetch(jsonUrl, init)).json()
-      data.title = json.name
+      if (json.name) data.title = json.name
+      if (json.description) data.description = json.description
       data.duration = json.duration / 1000
-      data.description = json.description
       data.thumbnail_url = json.poster
-      data.upload_date = data.created_at
+      data.upload_date = json.created_at
       Object.assign(data, getMaxDimensions(json.sources))
     }
 
