@@ -1,7 +1,7 @@
-import { jwplayer, getHtml } from 'playerx/dist/config.js'
+import { jwplayer as config, getHtml } from 'playerx/dist/config.js'
 import { getMaxDimensions, jpegDimensions } from '../utils.js'
 
-const { name, url, srcPattern } = jwplayer
+const { name, url, srcPattern } = config
 
 export default {
   patterns: [new RegExp(srcPattern)],
@@ -37,7 +37,7 @@ export default {
       thumbnail_width: rect.width,
       thumbnail_height: rect.height,
       html: getHtml({
-        ...jwplayer,
+        ...config,
         src: req.url,
         ...Object.fromEntries(req.searchParams),
       }),

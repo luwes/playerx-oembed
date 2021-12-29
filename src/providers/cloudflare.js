@@ -1,7 +1,7 @@
-import { cloudflare, getHtml } from 'playerx/dist/config.js'
+import { cloudflare as config, getHtml } from 'playerx/dist/config.js'
 import { jpegDimensions } from '../utils.js'
 
-const { name, url, srcPattern } = cloudflare
+const { name, url, srcPattern } = config
 
 export default {
   patterns: [new RegExp(srcPattern)],
@@ -29,7 +29,7 @@ export default {
       width: rect.width,
       height: rect.height,
       html: getHtml({
-        ...cloudflare,
+        ...config,
         src: req.url,
         ...Object.fromEntries(req.searchParams),
       }),

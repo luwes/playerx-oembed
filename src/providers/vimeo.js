@@ -1,6 +1,6 @@
-import { vimeo, getHtml } from 'playerx/dist/config.js'
+import { vimeo as config, getHtml } from 'playerx/dist/config.js'
 
-const { name, srcPattern } = vimeo
+const { name, srcPattern } = config
 
 export default {
   patterns: [new RegExp(srcPattern)],
@@ -24,7 +24,7 @@ export default {
       ...data,
       upload_date: date.toISOString(),
       html: getHtml({
-        ...vimeo,
+        ...config,
         src: req.url,
         params: this.filterParams(this.options, req.searchParams).toString(),
         ...Object.fromEntries(req.searchParams),

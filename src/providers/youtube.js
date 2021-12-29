@@ -1,7 +1,7 @@
-import { youtube, getHtml } from 'playerx/dist/config.js'
+import { youtube as config, getHtml } from 'playerx/dist/config.js'
 import { parse, toSeconds } from 'iso8601-duration'
 
-const { name, srcPattern } = youtube
+const { name, srcPattern } = config
 
 export default {
   patterns: [new RegExp(srcPattern)],
@@ -40,7 +40,7 @@ export default {
     return {
       ...data,
       html: getHtml({
-        ...youtube,
+        ...config,
         src: req.url,
         params: this.filterParams(this.options, req.searchParams).toString(),
         ...Object.fromEntries(req.searchParams),

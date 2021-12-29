@@ -1,7 +1,7 @@
-import { muxvideo, getHtml } from 'playerx/dist/config.js'
+import { muxvideo as config, getHtml } from 'playerx/dist/config.js'
 import { jpegDimensions } from '../utils.js'
 
-const { name, url, srcPattern } = muxvideo
+const { name, url, srcPattern } = config
 
 export default {
   patterns: [new RegExp(srcPattern)],
@@ -29,7 +29,7 @@ export default {
       width: rect.width,
       height: rect.height,
       html: getHtml({
-        ...muxvideo,
+        ...config,
         src: req.url,
         poster: thumbnail_url,
         ...Object.fromEntries(req.searchParams),
