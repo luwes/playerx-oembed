@@ -8,7 +8,7 @@ export default {
 
   name,
 
-  options: 'class id poster autoplay muted controls',
+  options: 'class id autoplay muted controls loop preload playsinline',
 
   oembed: {
     type: 'video',

@@ -19,7 +19,7 @@ test('https://www.dailymotion.com/video/x7sgamf', async (t) => {
     author_url: 'https://www.dailymotion.com/playerxo',
     thumbnail_width: 427,
     thumbnail_height: 240,
-    html: '<iframe frameborder="0" width="480" height="269" src="https://www.dailymotion.com/embed/video/x7sgamf" allowfullscreen allow="autoplay"></iframe>',
+    html: '<iframe id="plx621" src="https://www.dailymotion.com/embed/video/x7sgamf?" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>',
     width: 480,
     height: 269,
   })
