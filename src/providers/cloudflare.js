@@ -1,5 +1,6 @@
+// https://developers.cloudflare.com/stream/viewing-videos/using-the-stream-player#basic-options
 import { cloudflare as config, getHtml } from 'playerx/dist/config.js'
-import { jpegDimensions } from '../utils.js'
+import { jpegDimensions, getFileHeaders } from '../utils.js'
 
 const { name, url, srcPattern } = config
 
@@ -8,7 +9,9 @@ export default {
 
   name,
 
-  options: 'class id poster autoplay muted controls',
+  options:
+    'class id autoplay controls defaultTextTrack loop muted preload\
+    poster primaryColor startTime',
 
   oembed: {
     type: 'video',
@@ -20,9 +23,11 @@ export default {
   async serialize(data, req) {
     const thumbnail_url = `https://videodelivery.net/${req.captures[1]}/thumbnails/thumbnail.jpg`
     const rect = await jpegDimensions(thumbnail_url)
+    const thumbHeaders = await getFileHeaders(thumbnail_url)
 
     return {
       ...data,
+      upload_date: new Date(thumbHeaders['last-modified']).toISOString(),
       thumbnail_url,
       thumbnail_width: rect.width,
       thumbnail_height: rect.height,
@@ -31,6 +36,7 @@ export default {
       html: getHtml({
         ...config,
         src: req.url,
+        params: this.filterParams(this.options, req.searchParams).toString(),
         ...Object.fromEntries(req.searchParams),
       }),
     }
