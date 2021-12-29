@@ -5,7 +5,7 @@ export default {
 
   name: 'Dailymotion',
 
-  options: 'maxwidth maxheight autoplay',
+  options: 'autoplay',
 
   scrape: {
     duration: {

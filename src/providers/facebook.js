@@ -7,7 +7,7 @@ export default {
 
   name: 'Facebook',
 
-  options: 'maxwidth maxheight api_key',
+  options: 'api_key',
 
   buildUrl(req) {
     // FB removed their public oEmbed API :/

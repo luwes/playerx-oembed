@@ -7,7 +7,7 @@ export default {
 
   name: 'api.video',
 
-  options: 'maxwidth maxheight',
+  options: '',
 
   scrape: {
     description: {

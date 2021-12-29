@@ -6,7 +6,7 @@ export default {
 
   name: 'Vidyard',
 
-  options: 'maxwidth maxheight',
+  options: '',
 
   scrape: {
     thumbnail_url: {

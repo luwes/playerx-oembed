@@ -1,14 +1,17 @@
+import { youtube, getHtml } from 'playerx/dist/config.js'
 import { parse, toSeconds } from 'iso8601-duration'
 
+const { name, srcPattern } = youtube
+
 export default {
-  patterns: [
-    /https?:\/\/(?:[^.]+\.)?youtube\.com\/watch\/?\?(?:.+&)?v=([^&]+)/,
-    /https?:\/\/(?:[^.]+\.)?(?:youtu\.be|youtube\.com\/embed)\/([a-zA-Z0-9_-]+)/,
-  ],
+  patterns: [new RegExp(srcPattern)],
 
-  name: 'YouTube',
+  name,
 
-  options: 'maxwidth maxheight autoplay',
+  options:
+    'enablejsapi autoplay controls cc_lang_pref cc_load_policy color disablekb\
+    end fs hl iv_load_policy loop modestbranding origin playlist playsinline\
+    rel start widget_referrer',
 
   scrape: {
     duration: {
@@ -33,9 +36,15 @@ export default {
     return url
   },
 
-  serialize(data) {
+  serialize(data, req) {
     return {
       ...data,
+      html: getHtml({
+        ...youtube,
+        src: req.url,
+        params: this.filterParams(this.options, req.searchParams).toString(),
+        ...Object.fromEntries(req.searchParams),
+      }),
     }
   },
 }

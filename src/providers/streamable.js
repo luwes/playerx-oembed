@@ -5,7 +5,7 @@ export default {
 
   name: 'Streamable',
 
-  options: 'maxwidth maxheight',
+  options: '',
 
   scrape: {
     duration: {

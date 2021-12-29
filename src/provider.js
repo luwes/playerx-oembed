@@ -1,10 +1,23 @@
 import { secondsToISOString } from './utils.js';
 
-const providerOptions = 'seo fields'
+const providerOptions = 'seo fields callback api'
 
 export default {
   name: null,
-  options: 'maxwidth maxheight',
+  options: '',
+
+  cacheParams(req) {
+    let options = `url maxwidth maxheight width height ${providerOptions} ${this.options}`
+    return this.filterParams(options, req.searchParams)
+  },
+
+  requestUrl(req) {
+    let url = this.buildUrl(req)
+    let options = `maxwidth maxheight width height ${this.options}`
+    let params = this.filterParams(options, req.searchParams)
+    params.forEach((value, key) => url.searchParams.set(key, value))
+    return url
+  },
 
   buildUrl(req) {
     let providerName = this.name.toLowerCase().replace(/\s/g, '')
@@ -14,31 +27,14 @@ export default {
     return url
   },
 
-  requestUrl(req) {
-    let url = this.buildUrl(req)
-    let params = req.searchParams
-
-    ;(this.options.match(/\S+/g) || []).forEach((option) => {
+  filterParams(options, params) {
+    let requestParams = new URLSearchParams()
+    ;(options.match(/\S+/g) || []).forEach((option) => {
       if (params.has(option)) {
-        url.searchParams.set(option, params.get(option))
+        requestParams.set(option, params.get(option))
       }
     })
-
-    return url
-  },
-
-  cacheParams(req) {
-    let params = req.searchParams
-    let cacheParams = new URLSearchParams()
-    let allOptions = `url ${providerOptions} ${this.options}`
-
-    ;(allOptions.match(/\S+/g) || []).forEach((option) => {
-      if (params.has(option)) {
-        cacheParams.set(option, params.get(option))
-      }
-    })
-
-    return cacheParams
+    return requestParams
   },
 
   matches(req) {

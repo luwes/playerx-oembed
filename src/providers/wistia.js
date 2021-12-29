@@ -3,9 +3,7 @@ export default {
 
   name: 'Wistia',
 
-  options:
-    'width maxwidth height maxheight\
-    embedType handle popoverHeight popoverWidth',
+  options: 'embedType handle popoverHeight popoverWidth',
 
   scrape: {
     upload_date: {

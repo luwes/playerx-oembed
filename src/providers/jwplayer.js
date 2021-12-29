@@ -8,7 +8,7 @@ export default {
 
   name,
 
-  options: 'class id maxwidth maxheight poster autoplay muted controls',
+  options: 'class id poster autoplay muted controls',
 
   oembed: {
     type: 'video',

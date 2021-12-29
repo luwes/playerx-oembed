@@ -1,12 +1,15 @@
-export default {
-  patterns: [/https?:\/\/(?:www\.)?vimeo\.com\/(?:video\/)?(\d+)/],
+import { vimeo, getHtml } from 'playerx/dist/config.js'
 
-  name: 'Vimeo',
+const { name, srcPattern } = vimeo
+
+export default {
+  patterns: [new RegExp(srcPattern)],
+
+  name,
 
   options:
-    'width maxwidth height maxheight byline title\
-    portrait color autoplay loop xhtml api wmode\
-    iframe player_id',
+    'autopause autoplay background byline color controls dnt keyboard loop\
+    muted pip playsinline portrait quality speed texttrack title transparent',
 
   buildUrl(req) {
     let url = new URL('https://vimeo.com/api/oembed.json')
@@ -14,12 +17,18 @@ export default {
     return url
   },
 
-  serialize(data) {
+  serialize(data, req) {
     const date = new Date(data.upload_date)
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset())
     return {
       ...data,
       upload_date: date.toISOString(),
+      html: getHtml({
+        ...vimeo,
+        src: req.url,
+        params: this.filterParams(this.options, req.searchParams).toString(),
+        ...Object.fromEntries(req.searchParams),
+      }),
     }
   },
 }
