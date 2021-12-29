@@ -37,7 +37,7 @@ export default {
 
     return {
       ...data,
-      embed_url: null, // retrieve it from the html property, not from oembed.api.video
+      embed_url: null, // retrieve it from the html property, not from oembed.
       upload_date: new Date(thumbHeaders['last-modified']).toISOString(),
       html: getHtml({
         ...config,
