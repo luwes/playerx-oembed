@@ -4,9 +4,11 @@ export function render(evt, data) {
   }
 
   const html = `<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
   <title>${data.title || ''}</title>
+  <meta name="description" content="${data.description || ''}">
   <style>
     html,
     body {
@@ -24,7 +26,8 @@ export function render(evt, data) {
 </head>
 <body class="plx-body">
   ${data.html}
-</body>`
+</body>
+</html>`
 
   return new Response(html, {
     headers: {
