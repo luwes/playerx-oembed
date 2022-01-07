@@ -81,7 +81,7 @@ Supported providers so far (feel free to open a PR):
 - Dailymotion [/oembed?url=www.dailymotion.com/video/x85qs0t](https://api.playerx.io/oembed?url=https://www.dailymotion.com/video/x85qs0t)
 - Facebook [/oembed?url=www.facebook.com/wesleyluyten/videos/780960923305550](https://api.playerx.io/oembed?url=https://www.facebook.com/wesleyluyten/videos/780960923305550)
 - JW Player [/oembed?url=cdn.jwplayer.com/players/V073end4-Pd4r8gwe.html](https://api.playerx.io/oembed?url=https://cdn.jwplayer.com/players/V073end4-Pd4r8gwe.html)
-- MUX video [/oembed?url=stream.mux.com/r4rOE02cc95tbe3I00302nlrHfT023Q3IedFJW029w018KxZA.m3u8](https://api.playerx.io/oembed?url=https%3A%2F%2Fstream.mux.com%2Fr4rOE02cc95tbe3I00302nlrHfT023Q3IedFJW029w018KxZA.m3u8)
+- Mux video [/oembed?url=stream.mux.com/r4rOE02cc95tbe3I00302nlrHfT023Q3IedFJW029w018KxZA.m3u8](https://api.playerx.io/oembed?url=https%3A%2F%2Fstream.mux.com%2Fr4rOE02cc95tbe3I00302nlrHfT023Q3IedFJW029w018KxZA.m3u8)
 - Streamable [/oembed?url=streamable.com/pz0lmz](https://api.playerx.io/oembed?url=https://streamable.com/pz0lmz)
 - Vidyard [/oembed?url=share.vidyard.com/watch/SpdS7bytPcF1Ztc8d7NxHC?](https://api.playerx.io/oembed?url=https://share.vidyard.com/watch/SpdS7bytPcF1Ztc8d7NxHC?)
 - Vimeo [/oembed?url=vimeo.com/648359100](https://api.playerx.io/oembed?url=https://vimeo.com/648359100)
