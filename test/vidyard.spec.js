@@ -1,8 +1,8 @@
 import test from 'ava'
-import { Miniflare } from 'miniflare'
+import { create } from './miniflare.js'
 
 test('https://share.vidyard.com/watch/TYY9iSji3mJuFqp2oj4FoL', async (t) => {
-  const mf = new Miniflare({ buildCommand: undefined })
+  const mf = create({})
   const res = await mf.dispatchFetch(`http://localhost:8787/?url=${t.title}`)
   const json = await res.json()
   t.like(json, {
@@ -11,7 +11,7 @@ test('https://share.vidyard.com/watch/TYY9iSji3mJuFqp2oj4FoL', async (t) => {
     provider_name: 'Vidyard',
     provider_url: 'https://vidyard.com/',
     title: 'Travis Scott - Made in America',
-    description: '',
+    description: 'Vidyard video',
     duration: 46,
     upload_date: '2020-03-12T04:33:18.000Z',
     thumbnail_url: 'https://play.vidyard.com/TYY9iSji3mJuFqp2oj4FoL.jpg?',

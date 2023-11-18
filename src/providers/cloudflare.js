@@ -1,5 +1,5 @@
 // https://developers.cloudflare.com/stream/viewing-videos/using-the-stream-player#basic-options
-import { cloudflare as config, getHtml } from 'playerx/dist/config.js'
+import { cloudflare as config, getHtml } from 'playerx/config'
 import { jpegDimensions, getFileHeaders } from '../utils.js'
 
 const { name, url, srcPattern } = config

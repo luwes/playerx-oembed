@@ -1,5 +1,5 @@
 // https://developer.dailymotion.com/player/#player-runtime-parameters
-import { dailymotion as config, getHtml } from 'playerx/dist/config.js'
+import { dailymotion as config, getHtml } from 'playerx/config'
 
 const { name, srcPattern } = config
 

@@ -1,4 +1,4 @@
-import { muxvideo as config, getHtml } from 'playerx/dist/config.js'
+import { muxvideo as config, getHtml } from 'playerx/config'
 import { jpegDimensions } from '../utils.js'
 
 const { name, url, srcPattern } = config

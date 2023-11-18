@@ -1,13 +1,8 @@
 import test from 'ava'
-import { Miniflare } from 'miniflare'
+import { create } from './miniflare.js'
 
 test.beforeEach((t) => {
-  const mf = new Miniflare({
-    // We don't want to rebuild our worker for each test, we're already doing
-    // it once before we run all tests in package.json, so disable it here.
-    // This will override the option in wrangler.toml.
-    buildCommand: undefined,
-  })
+  const mf = create({})
   t.context = { mf }
 })
 

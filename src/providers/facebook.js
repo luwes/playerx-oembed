@@ -1,5 +1,5 @@
 /* global IFRAMELY_API_KEY */
-import { facebook as config, getHtml } from 'playerx/dist/config.js'
+import { facebook as config, getHtml } from 'playerx/config'
 
 const { name, srcPattern } = config
 

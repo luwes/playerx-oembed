@@ -11,3 +11,5 @@ node_modules/
 *.sublime-project
 /.env
 *.sublime-workspace
+/.DS_Store
+/.dev.vars

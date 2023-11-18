@@ -1,4 +1,4 @@
-import { brightcove as config, getHtml } from 'playerx/dist/config.js'
+import { brightcove as config, getHtml } from 'playerx/config'
 import { getMaxDimensions, jpegDimensions } from '../utils.js'
 
 const { name, url, srcPattern } = config

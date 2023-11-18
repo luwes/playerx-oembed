@@ -1,5 +1,5 @@
 // https://wistia.com/support/developers/embed-options#options
-import { wistia as config, getHtml } from 'playerx/dist/config.js'
+import { wistia as config, getHtml } from 'playerx/config'
 
 const { name, srcPattern } = config
 

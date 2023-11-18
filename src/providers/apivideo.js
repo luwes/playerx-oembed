@@ -1,4 +1,4 @@
-import { apivideo as config, getHtml } from 'playerx/dist/config.js'
+import { apivideo as config, getHtml } from 'playerx/config'
 import { getFileHeaders } from '../utils.js'
 
 const { name, srcPattern } = config

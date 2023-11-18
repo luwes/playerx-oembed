@@ -1,8 +1,8 @@
 import test from 'ava'
-import { Miniflare } from 'miniflare'
+import { create } from './miniflare.js'
 
 test('https://streamable.com/aizxh', async (t) => {
-  const mf = new Miniflare({ buildCommand: undefined })
+  const mf = create({})
   const res = await mf.dispatchFetch(`http://localhost:8787/?url=${t.title}`)
   const json = await res.json()
   t.like(json, {

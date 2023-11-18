@@ -1,6 +1,6 @@
 // https://knowledge.vidyard.com/hc/en-us/articles/360010000393-Share-a-Vidyard-player-using-oEmbed
 // https://knowledge.vidyard.com/hc/en-us/articles/360009879754-Use-query-strings-to-override-player-settings
-import { vidyard as config, getHtml } from 'playerx/dist/config.js'
+import { vidyard as config, getHtml } from 'playerx/config'
 import { getFileHeaders } from '../utils.js'
 
 const { name, srcPattern } = config

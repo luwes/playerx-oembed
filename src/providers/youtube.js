@@ -1,4 +1,4 @@
-import { youtube as config, getHtml } from 'playerx/dist/config.js'
+import { youtube as config, getHtml } from 'playerx/config'
 import { parse, toSeconds } from 'iso8601-duration'
 
 const { name, srcPattern } = config

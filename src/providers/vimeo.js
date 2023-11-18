@@ -1,4 +1,4 @@
-import { vimeo as config, getHtml } from 'playerx/dist/config.js'
+import { vimeo as config, getHtml } from 'playerx/config'
 
 const { name, srcPattern } = config
 

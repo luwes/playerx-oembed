@@ -1,8 +1,8 @@
 import test from 'ava'
-import { Miniflare } from 'miniflare'
+import { create } from './miniflare.js'
 
 test('https://vimeo.com/357274789', async (t) => {
-  const mf = new Miniflare({ buildCommand: undefined })
+  const mf = create({})
   const res = await mf.dispatchFetch(`http://localhost:8787/?url=${t.title}`)
   t.deepEqual(await res.json(), {
     version: '1.0',
