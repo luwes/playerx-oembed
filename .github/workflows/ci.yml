@@ -1,0 +1,19 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_IFRAMELY_API_KEY: ${{ secrets.IFRAMELY_API_KEY }}
+
+    - uses: actions/setup-node@v4
+      with:
+        cache: 'npm'
+    - run: npm ci
+    - run: npm test

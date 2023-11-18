@@ -13,3 +13,5 @@ node_modules/
 *.sublime-workspace
 /.DS_Store
 /.dev.vars
+/wrangler.toml
+/.wrangler/
