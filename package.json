@@ -17,7 +17,7 @@
     "eslint": "^8.54.0",
     "miniflare": "^3.20231030.0",
     "typescript": "^5.2.2",
-    "wrangler": "^3.16.0"
+    "wrangler": "^3.19.0"
   },
   "dependencies": {
     "iso8601-duration": "2.1.1",
